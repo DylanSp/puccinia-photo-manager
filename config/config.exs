@@ -17,15 +17,6 @@ config :puccinia_photo_manager, PucciniaPhotoManagerWeb.Endpoint,
   pubsub_server: PucciniaPhotoManager.PubSub,
   live_view: [signing_salt: "bb/+B29D"]
 
-# Configure esbuild (the version is required)
-config :esbuild,
-  version: "0.12.18",
-  default: [
-    args: ~w(js/app.js --bundle --target=es2016 --outdir=../priv/static/assets),
-    cd: Path.expand("../assets", __DIR__),
-    env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
-  ]
-
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",

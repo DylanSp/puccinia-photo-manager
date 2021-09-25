@@ -3,7 +3,7 @@ import Config
 # Configure your database
 config :puccinia_photo_manager, PucciniaPhotoManager.Repo,
   username: "postgres",
-  password: "postgres",
+  password: "dbpass",
   database: "puccinia_photo_manager_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
@@ -24,8 +24,7 @@ config :puccinia_photo_manager, PucciniaPhotoManagerWeb.Endpoint,
   debug_errors: true,
   secret_key_base: "njyJsiHjN/cjG00ukBul1JXAOSLK58BW58zShHdL+0vo6Novy7A7i8vG2Q4lktIJ",
   watchers: [
-    # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)
-    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]}
+    node: ["build.mjs", "--watch", cd: Path.expand("../assets", __DIR__)]
   ]
 
 # ## SSL Support
