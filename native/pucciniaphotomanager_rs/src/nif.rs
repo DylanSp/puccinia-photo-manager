@@ -1,8 +1,9 @@
-use crate::logic
+use crate::logic;
 
 #[rustler::nif]
-fn add(a: i64, b: i64) -> i64 {
-  logic::add(a, b)
+pub fn parse_exif(/* bytes: &[u8]*/ str: String) -> String {
+    str
+    // logic::parse_exif(bytes)
 }
 
-rustler::init!("Elixir.PucciniaPhotoManager.Nif", [add]);
+rustler::init!("Elixir.PucciniaPhotoManager.Nif", [parse_exif]);

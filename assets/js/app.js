@@ -3,11 +3,23 @@
 import "../css/app.css";
 
 import { default as wasmbin } from "./pkg/pucciniaphotomanager_rs_bg.wasm";
-import init, { add } from "./pkg/pucciniaphotomanager_rs.js";
+import init, { parse_exif } from "./pkg/pucciniaphotomanager_rs.js";
+import jpgBytes from "../images/exif.jpg";
+import tifBytes from "../images/exif.tif";
 
 init(wasmbin).then(() => {
+  const jpgParsed = parse_exif(jpgBytes);
+  const tifParsed = parse_exif(tifBytes);
+  const totalStatus = [
+    "Parse results",
+    "JPG:",
+    jpgParsed,
+    "",
+    "TIF:",
+    tifParsed,
+  ].reduce((acc, str) => acc + "\n" + str);
   document.getElementById("client-hello").addEventListener("click", () => {
-    alert(add(1n, 2n));
+    alert(totalStatus);
   });
 });
 

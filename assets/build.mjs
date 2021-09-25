@@ -70,8 +70,10 @@ let wasmPlugin = {
   },
 };
 
+// Add loaders for images/fonts/etc, e.g. { '.svg': 'file' }
 const loader = {
-  // Add loaders for images/fonts/etc, e.g. { '.svg': 'file' }
+  ".jpg": "binary",
+  ".tif": "binary",
 };
 
 const plugins = [wasmPlugin];
