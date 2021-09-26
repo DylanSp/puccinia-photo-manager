@@ -22,22 +22,46 @@ const buildWasm = () => {
     cwd: path.join(projectRootPath, "native", nativeFolderName),
   });
 
-  const files = [`${nativeFolderName}.js`, `${nativeFolderName}_bg.wasm`];
-
-  fs.mkdirSync(path.join(projectRootPath, "assets", "js", "pkg"), {
+  const jsWrapperFilename = `${nativeFolderName}.js`;
+  const elixirAssetsPkgFolder = path.join(
+    projectRootPath,
+    "assets",
+    "js",
+    "pkg"
+  );
+  fs.mkdirSync(elixirAssetsPkgFolder, {
     recursive: true,
   });
-  for (const file of files) {
-    const sourcePath = path.join(
-      projectRootPath,
-      "native",
-      nativeFolderName,
-      "pkg",
-      file
-    );
-    const targetPath = path.join(projectRootPath, "assets", "js", "pkg", file);
-    fs.copyFileSync(sourcePath, targetPath);
-  }
+  const jsSourcePath = path.join(
+    projectRootPath,
+    "native",
+    nativeFolderName,
+    "pkg",
+    jsWrapperFilename
+  );
+  const jsTargetPath = path.join(elixirAssetsPkgFolder, jsWrapperFilename);
+  fs.copyFileSync(jsSourcePath, jsTargetPath);
+
+  const serverAssetsPkgFolder = path.join(
+    projectRootPath,
+    "priv",
+    "static",
+    "assets",
+    "pkg"
+  );
+  fs.mkdirSync(serverAssetsPkgFolder, {
+    recursive: true,
+  });
+  const wasmFilename = `${nativeFolderName}_bg.wasm`;
+  const wasmSourcePath = path.join(
+    projectRootPath,
+    "native",
+    nativeFolderName,
+    "pkg",
+    wasmFilename
+  );
+  const wasmTargetPath = path.join(serverAssetsPkgFolder, wasmFilename);
+  fs.copyFileSync(wasmSourcePath, wasmTargetPath);
 };
 
 let wasmPlugin = {

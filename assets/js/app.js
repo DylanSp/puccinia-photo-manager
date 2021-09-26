@@ -2,7 +2,6 @@
 // Remove this line if you add a your own CSS build pipeline (e.g postcss).
 import "../css/app.css";
 
-import { default as wasmbin } from "./pkg/pucciniaphotomanager_rs_bg.wasm";
 import init, { parse_exif } from "./pkg/pucciniaphotomanager_rs.js";
 import jpgBytes from "../images/exif.jpg";
 
@@ -18,7 +17,7 @@ const getPictureMessage = (bytes) => {
   return `Artist: ${artist}, description: ${imageDesc}`;
 };
 
-init(wasmbin).then(() => {
+init("/assets/pkg/pucciniaphotomanager_rs_bg.wasm").then(() => {
   const message = getPictureMessage(jpgBytes);
   document.getElementById("client-hello").addEventListener("click", () => {
     alert(message);
