@@ -14,7 +14,6 @@ kamadak-exif = "0.5.4"
 
 [target.'cfg(not(target_family = "wasm"))'.dependencies]
 rustler = "0.22.0"
-rustler_sys = "2.1.1"
 
 [target.'cfg(target_family = "wasm")'.dependencies]
 wasm-bindgen = "0.2.63"

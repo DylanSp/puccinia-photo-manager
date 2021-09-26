@@ -93,7 +93,6 @@ version = "0.1.0"
 dependencies = [
  "kamadak-exif",
  "rustler",
- "rustler_sys",
  "wasm-bindgen",
  "wasm-bindgen-test",
 ]

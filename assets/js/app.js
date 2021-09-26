@@ -5,21 +5,23 @@ import "../css/app.css";
 import { default as wasmbin } from "./pkg/pucciniaphotomanager_rs_bg.wasm";
 import init, { parse_exif } from "./pkg/pucciniaphotomanager_rs.js";
 import jpgBytes from "../images/exif.jpg";
-import tifBytes from "../images/exif.tif";
+
+const getPictureMessage = (bytes) => {
+  const parseResult = parse_exif(bytes);
+  if (parseResult === undefined) {
+    return "Error parsing EXIF";
+  }
+
+  const artist = parseResult.artist ?? "Unknown artist";
+  const imageDesc =
+    parseResult.image_description ?? "Unknown image description";
+  return `Artist: ${artist}, description: ${imageDesc}`;
+};
 
 init(wasmbin).then(() => {
-  const jpgParsed = parse_exif(jpgBytes);
-  const tifParsed = parse_exif(tifBytes);
-  const totalStatus = [
-    "Parse results",
-    "JPG:",
-    jpgParsed,
-    "",
-    "TIF:",
-    tifParsed,
-  ].reduce((acc, str) => acc + "\n" + str);
+  const message = getPictureMessage(jpgBytes);
   document.getElementById("client-hello").addEventListener("click", () => {
-    alert(totalStatus);
+    alert(message);
   });
 });
 
