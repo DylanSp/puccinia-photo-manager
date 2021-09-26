@@ -1,0 +1,23 @@
+Features
+* photo gallery instead of newspaper articles
+* user has folders (with images unsorted within them)
+  * image's folder can be chosen at upload time
+  * folder can changed through edit dialog
+    * or drag-and-drop between folders if I feel ambitious
+* undo feature - queue up deletion while notification lasts, cancel if Undo clicked, actually delete when notification expires
+* when connectivity lost, fall back to read-only mode (able to see metadata and album organization, no editing or viewing images)
+
+Implementation
+* Colors: green is #006600, purple is #660066 (if I still want to use that scheme, maybe not, maybe pick a new one with material palette thingy)
+  * palette thingy: https://material.io/design/color/the-color-system.html#tools-for-picking-colors
+* adding Tailwind, Alpine: https://github.com/josevalim/phx_esbuild_demo/pull/3/files
+* alerts with Tailwind and Alpine: https://codepen.io/tommyia/pen/mdVyGJb?css-preprocessor=none
+* Tailwind component library: https://www.tailwind-kit.com/started
+* <img> from in-memory data: https://stackoverflow.com/questions/13950865/javascript-render-png-stored-as-uint8array-onto-canvas-element-without-data-uri/13952168#13952168
+* Rust stuff
+  * may be able to get rid of wasm.rs, trim nif.rs down to rustler::init! call; use cfg_attr to apply wasm_bindgen, rustler_nif to struct in logic.rs
+    * https://doc.rust-lang.org/reference/conditional-compilation.html#the-cfg_attr-attribute
+  * add datetime support to picture metadata
+    * https://docs.rs/kamadak-exif/0.5.4/exif/struct.DateTime.html
+    * https://docs.rs/chrono/0.4.19/chrono/
+  * test with pics from my phone, see what EXIF fields photos have by default
