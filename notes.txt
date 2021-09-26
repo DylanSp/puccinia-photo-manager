@@ -8,6 +8,13 @@ Features
 * when connectivity lost, fall back to read-only mode (able to see metadata and album organization, no editing or viewing images)
 
 Implementation
+* Licensing
+  * remove asserts/images/exif.{jpg,tif}
+  * check licenses of all Elixir/JS/Rust dependencies
+  * _then_ add appropriate license to project 
+    * if I want to include test images, make sure they're properly licensed as well
+      * if not mine, make sure I have license to use
+      * if mine, make sure I have license indicated (and personal info stripped) 
 * Colors: green is #006600, purple is #660066 (if I still want to use that scheme, maybe not, maybe pick a new one with material palette thingy)
   * palette thingy: https://material.io/design/color/the-color-system.html#tools-for-picking-colors
 * adding Tailwind, Alpine: https://github.com/josevalim/phx_esbuild_demo/pull/3/files
