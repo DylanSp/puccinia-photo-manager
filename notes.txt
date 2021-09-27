@@ -9,7 +9,7 @@ Features
 
 Implementation
 * Licensing
-  * remove asserts/images/exif.{jpg,tif}
+  * remove assets/images/exif.{jpg,tif}
   * check licenses of all Elixir/JS/Rust dependencies
   * _then_ add appropriate license to project 
     * if I want to include test images, make sure they're properly licensed as well
@@ -21,10 +21,3 @@ Implementation
 * alerts with Tailwind and Alpine: https://codepen.io/tommyia/pen/mdVyGJb?css-preprocessor=none
 * Tailwind component library: https://www.tailwind-kit.com/started
 * <img> from in-memory data: https://stackoverflow.com/questions/13950865/javascript-render-png-stored-as-uint8array-onto-canvas-element-without-data-uri/13952168#13952168
-* Rust stuff
-  * may be able to get rid of wasm.rs, trim nif.rs down to rustler::init! call; use cfg_attr to apply wasm_bindgen, rustler_nif to struct in logic.rs
-    * https://doc.rust-lang.org/reference/conditional-compilation.html#the-cfg_attr-attribute
-  * add datetime support to picture metadata
-    * https://docs.rs/kamadak-exif/0.5.4/exif/struct.DateTime.html
-    * https://docs.rs/chrono/0.4.19/chrono/
-  * test with pics from my phone, see what EXIF fields photos have by default

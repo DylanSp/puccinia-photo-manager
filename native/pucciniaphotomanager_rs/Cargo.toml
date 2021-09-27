@@ -10,6 +10,7 @@ name = "pucciniaphotomanager_rs"
 path = "src/lib.rs"
 
 [dependencies]
+chrono = {version = "0.4", features = ["wasmbind"]}
 kamadak-exif = "0.5.4"
 
 [target.'cfg(not(target_family = "wasm"))'.dependencies]
